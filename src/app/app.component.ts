@@ -6,5 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'user-book-management-ng';
+  title = 'client-book-management-ng';
+  date: Date | undefined;
+
 }

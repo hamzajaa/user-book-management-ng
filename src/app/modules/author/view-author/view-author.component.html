@@ -1,0 +1,60 @@
+<p-dialog [(visible)]="viewDialog" [style]="{width: '70vw'}" header="Author" [modal]="true"
+          styleClass="p-fluid" [maximizable]="true" [draggable]="false" [resizable]="false">
+  <ng-template pTemplate="content">
+    <p-tabView>
+      <p-tabPanel header="Author">
+        <div class="grid">
+
+          <div class="field col-12 md:col-6">
+            <label for="1">First Name</label>
+            <input class="mb-2 mr-2" type="text" pInputText placeholder="FirstName"
+                   id="1" [(ngModel)]="author.firstName"
+                   [disabled]="true"
+            />
+          </div>
+
+          <div class="field col-12 md:col-6">
+            <label for="2">Last Name</label>
+            <input id="2" pInputTextarea rows="5" cols="30"
+                   placeholder="LastName" [(ngModel)]="author.lastName"
+                   [disabled]="true"
+            />
+          </div>
+
+          <div class="field col-12 md:col-6">
+            <label for="3">Email</label>
+            <input id="3" pInputTextarea rows="5" cols="30"
+                   placeholder="Email" [(ngModel)]="author.email"
+                   [disabled]="true"
+            />
+          </div>
+
+          <div class="field col-12 md:col-6">
+            <label for="4">Phone Number</label>
+            <input id="4" pInputTextarea rows="5" cols="30"
+                   placeholder="PhoneNumber" [(ngModel)]="author.phoneNumber"
+                   [disabled]="true"
+            />
+          </div>
+
+
+        </div>
+      </p-tabPanel>
+
+    </p-tabView>
+
+  </ng-template>
+
+  <ng-template pTemplate="footer">
+    <div class="grid-step">
+      <div style="margin-left: auto;">
+        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-outlined" style="margin:10px"
+                (click)="hideEditDialog()"></button>
+      </div>
+
+    </div>
+  </ng-template>
+
+  <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
+
+</p-dialog>

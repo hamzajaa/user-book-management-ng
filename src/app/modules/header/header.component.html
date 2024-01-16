@@ -1,0 +1,18 @@
+<p-panel [toggleable]="false">
+  <ng-template pTemplate="header">
+    <i class="pi pi-align-justify" style="font-size: 1.5rem" (click)="openMenuRight()"></i>
+  </ng-template>
+  <router-outlet></router-outlet>
+</p-panel>
+
+<!--<div class="card flex justify-content-center" style="font-size: 1rem">-->
+<!--  <p-sidebar [(visible)]="sidebarVisible" >-->
+<!--    <p-panelMenu [model]="items2"></p-panelMenu>-->
+<!--  </p-sidebar>-->
+<!--</div>-->
+<app-menu></app-menu>
+
+
+<!--<div *ngIf="sidebarVisible">-->
+<!--  <p-panelMenu [model]="items2" [style]="{'width':'300px'}"></p-panelMenu>-->
+<!--</div>-->

@@ -1,0 +1,140 @@
+<p-dialog [(visible)]="createDialog" [style]="{width: '70vw'}" header="Book" [modal]="true"
+          styleClass="p-fluid" [maximizable]="true" [draggable]="false" [resizable]="false">
+  <ng-template pTemplate="content">
+    <p-tabView>
+      <p-tabPanel header="Book">
+        <div class="grid">
+
+          <div class="field col-12 md:col-6">
+            <label for="1">Title<span style="color: red;">*</span></label>
+            <input class="mb-2 mr-2" type="text" pInputText placeholder="Title"
+                   id="1" [(ngModel)]="selectedBook.title"
+                   [ngClass]="{'ng-invalid ng-dirty' : !validBookTitle}"/>
+            <small class='p-error' *ngIf='!validBookTitle'>Title is Obligation.</small>
+          </div>
+
+          <div class="field col-12 md:col-6">
+            <label for="6">Description<span style="color: red;">*</span></label>
+            <textarea id="6" pInputTextarea rows="5" cols="30"
+                      placeholder="Description" [(ngModel)]="selectedBook.description"
+                      [ngClass]="{'ng-invalid ng-dirty' : !validBookTitle}">
+            </textarea>
+            <small class='p-error' *ngIf='!validBookTitle'>Title is Obligation.</small>
+          </div>
+
+          <div class="field col-12 md:col-6">
+            <label for="7">Number Of Pages<span style="color: red;">*</span></label>
+            <p-inputNumber class="mb-2 mr-2" id="7" placeholder="Number Of Pages"
+                           [(ngModel)]="selectedBook.numberOfPages"
+                           [ngClass]="{'ng-invalid ng-dirty' : !validBookDescription}">
+            </p-inputNumber>
+            <small class='p-error' *ngIf='!validBookDescription'>Number Of Pages is Obligation.</small>
+
+          </div>
+
+
+          <div class="field col-11 md:col-5">
+            <label for="2">Author<span style="color: red;">*</span></label>
+            <p-dropdown appendTo="body" [options]="authors" [(ngModel)]="selectedBook.authorDto" id="2"
+                        [filter]="true" filterMatchMode="contains"
+                        [showClear]="true" optionLabel="firstName"
+                        placeholder="Author">
+            </p-dropdown>
+
+          </div>
+          <div class="col-1 mt-4">
+            <label></label>
+            <button pButton pRipple type="button" icon="pi pi-plus" (click)="openCreateAuthor('Author')"
+                    class="p-button-success one-colonne-btn-success-align"></button>
+          </div>
+
+
+          <div class="field col-11 md:col-5">
+            <label for="2">Category<span style="color: red;">*</span></label>
+            <p-dropdown appendTo="body" [options]="categories" [(ngModel)]="selectedBook.categoryDto" id="2"
+                        [filter]="true" filterMatchMode="contains"
+                        [showClear]="true" optionLabel="label"
+                        placeholder="Category">
+            </p-dropdown>
+          </div>
+          <div class="col-1 mt-4">
+            <label></label>
+            <button pButton pRipple type="button" icon="pi pi-plus" (click)="openCreateCategory('Category')"
+                    class="p-button-success one-colonne-btn-success-align"></button>
+          </div>
+
+          <div class="field col-11 md:col-6">
+            <label for="5">On Loan</label>
+            <div class="input-switch">
+              <p-inputSwitch class="mb-2 mr-2" id="5" [(ngModel)]="selectedBook.onLoan"></p-inputSwitch>
+            </div>
+          </div>
+
+        </div>
+      </p-tabPanel>
+
+    </p-tabView>
+
+  </ng-template>
+
+  <ng-template pTemplate="footer">
+    <div class="grid-step">
+      <div style="margin-left: auto;">
+        <button pButton pRipple label="Save" icon="pi pi-check" style="margin:10px"
+                (click)="save()"></button>
+
+        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-outlined" style="margin:10px"
+                (click)="hideCreateDialog()"></button>
+      </div>
+
+    </div>
+  </ng-template>
+
+  <app-create-author></app-create-author>
+  <app-create-category></app-create-category>
+  <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
+</p-dialog>
+
+
+<!--<p-dialog [(visible)]="createDialog" [style]="{ width: '450px' }" header="Product Details" [modal]="true" styleClass="p-fluid">-->
+<!--  <ng-template pTemplate="content">-->
+
+<!--    <div class="field">-->
+<!--      <label for="name">Name</label>-->
+<!--      <input type="text" pInputText id="name" [(ngModel)]="book.title" required autofocus/>-->
+<!--      <small class="p-error" *ngIf="submitted && !book.title">Title is required.</small>-->
+<!--    </div>-->
+
+<!--    <div class="field">-->
+<!--      <label for="description">Description</label>-->
+<!--      <textarea id="description" pInputTextarea [(ngModel)]="book.description" required rows="3" cols="20"></textarea>-->
+<!--    </div>-->
+
+
+<!--    <div class="formgrid grid">-->
+<!--      <div class="field col">-->
+<!--        <label for="numberOfPages">Number Of Pages</label>-->
+<!--        <p-inputNumber id="numberOfPages" [(ngModel)]="book.numberOfPages" mode="decimal" locale="en-US"></p-inputNumber>-->
+<!--      </div>-->
+<!--    </div>-->
+
+<!--    <div class="field">-->
+<!--      <label for="authors">Inventory Status</label>-->
+<!--      <p-dropdown [(ngModel)]="book.authorDto" inputId="authors" [options]="authors">-->
+<!--        <ng-template pTemplate="selectedItem">-->
+<!--          <p-tag [value]=""></p-tag>-->
+<!--        </ng-template>-->
+<!--      </p-dropdown>-->
+<!--    </div>-->
+
+
+<!--  </ng-template>-->
+
+<!--  <ng-template pTemplate="footer">-->
+<!--    <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" ></button>-->
+<!--    <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" ></button>-->
+<!--  </ng-template>-->
+<!--</p-dialog>-->
+
+<!--<p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog>-->
+

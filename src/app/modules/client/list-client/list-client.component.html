@@ -1,0 +1,151 @@
+<div class="p-grid">
+  <div class="p-col-12">
+    <div class="card">
+      <p-toast></p-toast>
+      <p-toolbar styleClass="mb-4 gap-2">
+        <ng-template pTemplate="left">
+          <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success mr-2"
+                  (click)="openNew()"></button>
+          <button pButton pRipple label="Search"
+                  icon="pi pi-{{findByCriteriaShow?'angle-down':'angle-right'}}"
+                  class="p-button-success mr-2"
+                  (click)="this.findByCriteriaShow = !this.findByCriteriaShow"></button>
+          <button pButton pRipple icon="pi pi-trash" class="p-button-danger" (click)="deleteSelectedClients()"
+                  [disabled]="!selectedClients || !selectedClients.length"></button>
+        </ng-template>
+
+        <ng-template pTemplate="right">
+          <p-fileUpload mode="basic" accept="image/*" [maxFileSize]="1000000" label="Import"
+                        chooseLabel="Import" class="mr-2 inline-block"></p-fileUpload>
+          <button pButton pRipple label="Export" icon="pi pi-upload" class="p-button-help"></button>
+        </ng-template>
+      </p-toolbar>
+
+      <p-toolbar *ngIf="findByCriteriaShow">
+
+        <div class="col-12">
+          <div class="flex flex-wrap p-fluid col-12">
+
+            <div class="lg:col-3 md:col-6 sm:col-12 mb-4">
+              <label class="font-bold block mb-2"
+                     for="1">First Name</label>
+              <input class="w-full" pInputText id="1" type="text" [(ngModel)]="searchClient.firstName">
+            </div>
+
+            <div class="lg:col-3 md:col-6 sm:col-12 mb-4">
+              <label class="font-bold block mb-2"
+                     for="2">Last Name</label>
+              <input class="w-full" pInputText id="2" type="text" [(ngModel)]="searchClient.lastName">
+            </div>
+
+            <div class="lg:col-3 md:col-6 sm:col-12 mb-4">
+              <label class="font-bold block mb-2"
+                     for="2">Email</label>
+              <input class="w-full" pInputText id="2" type="text" [(ngModel)]="searchClient.email">
+            </div>
+
+            <div class="lg:col-3 md:col-6 sm:col-12 mb-4">
+              <label class="font-bold block mb-2"
+                     for="2">Phone Number</label>
+              <input class="w-full" pInputText id="2" type="text" [(ngModel)]="searchClient.phoneNumber">
+            </div>
+
+          </div>
+
+        </div>
+      </p-toolbar>
+
+      <p-table
+        #dt
+        [value]="clients"
+        [rows]="10"
+        [paginator]="true"
+        [globalFilterFields]="['title', 'description', 'numberOfPage']"
+        [tableStyle]="{ 'min-width': '75rem' }"
+        [(selection)]="selectedClient"
+        [rowHover]="true"
+        dataKey="id"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+        [showCurrentPageReport]="true"
+      >
+        <ng-template pTemplate="caption">
+          <div class="flex align-items-center justify-content-between">
+            <h5 class="m-0">Manage Clients</h5>
+            <span class="p-input-icon-left">
+                    <i class="pi pi-search"></i>
+                    <input pInputText type="text" (input)="dt.filterGlobal($event.target, 'contains')"
+                           placeholder="Search..."/>
+                </span>
+          </div>
+        </ng-template>
+
+        <ng-template pTemplate="header">
+          <tr>
+            <th style="width: 4rem">
+              <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+            </th>
+
+            <th pSortableColumn="1" style="min-width:15rem">First Name
+              <p-sortIcon field="1"></p-sortIcon>
+            </th>
+
+            <th pSortableColumn="2">Last Name
+              <p-sortIcon field="2"></p-sortIcon>
+            </th>
+
+            <th pSortableColumn="2">Email
+              <p-sortIcon field="2"></p-sortIcon>
+            </th>
+
+            <th pSortableColumn="3" style="min-width:10rem">Phone Number
+              <p-sortIcon field="3"></p-sortIcon>
+            </th>
+
+            <th pSortableColumn="5" style="min-width:10rem">Actions
+              <p-sortIcon field="5"></p-sortIcon>
+            </th>
+
+            <th></th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-client>
+          <tr>
+            <td>
+              <p-tableCheckbox [value]="client"></p-tableCheckbox>
+            </td>
+
+            <td>{{ client.firstName }}</td>
+
+            <td>{{ client.lastName }}</td>
+
+            <td>{{ client.email }}</td>
+
+            <td>{{ client.phoneNumber }}</td>
+
+            <td>
+              <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"
+                      (click)="editClient(client)"></button>
+              <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger mr-2"
+                      (click)="deleteClient(client)"></button>
+
+              <button pButton pRipple icon="pi pi-eye" class="p-button-rounded p-button-warning"
+                      (click)="viewClient(client)"></button>
+            </td>
+
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="summary">
+          <div class="flex align-items-center justify-content-between">In total there
+            are {{ clients ? clients.length : 0 }} clients.
+          </div>
+        </ng-template>
+      </p-table>
+    </div>
+
+    <app-create-client *ngIf="createDialog"></app-create-client>
+    <app-edit-client *ngIf="editDialog"></app-edit-client>
+    <app-view-client *ngIf="viewDialog"></app-view-client>
+    <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
+
+  </div>
+</div>

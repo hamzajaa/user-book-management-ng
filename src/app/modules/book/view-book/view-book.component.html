@@ -1,0 +1,70 @@
+<p-dialog [(visible)]="viewDialog" [style]="{width: '70vw'}" header="Book" [modal]="true"
+          styleClass="p-fluid" [maximizable]="true" [draggable]="false" [resizable]="false">
+  <ng-template pTemplate="content">
+    <p-tabView>
+      <p-tabPanel header="Book">
+        <div class="grid">
+
+          <div class="field col-12 md:col-6">
+            <label for="1">Title</label>
+            <input class="mb-2 mr-2" type="text" pInputText placeholder="Title"
+                   id="1" [(ngModel)]="book.title"
+                   [disabled]="true"
+            />
+          </div>
+
+          <div class="field col-12 md:col-6">
+            <label for="6">Description</label>
+            <textarea id="6" pInputTextarea rows="5" cols="30"
+                      placeholder="Description" [(ngModel)]="book.description"
+                      [disabled]="true"
+            ></textarea>
+          </div>
+
+          <div class="field col-12 md:col-6">
+            <label for="7">Number Of Pages</label>
+            <p-inputNumber class="mb-2 mr-2" id="7" placeholder="Number Of Pages"
+                           [(ngModel)]="book.numberOfPages"
+                           [disabled]="true"
+            ></p-inputNumber>
+          </div>
+
+
+          <div class="field col-11 md:col-5">
+            <label for="2">Author</label>
+            <p-dropdown appendTo="body" [(ngModel)]="book.authorDto" id="2"
+                        [filter]="true" filterMatchMode="contains"
+                        [showClear]="true" optionLabel="firstName"
+                        placeholder="Author"
+                        [disabled]="true">
+            </p-dropdown>
+
+          </div>
+
+          <div class="field col-11 md:col-5">
+            <label for="2">Category</label>
+            <p-dropdown appendTo="body" [(ngModel)]="book.categoryDto" id="2"
+                        [filter]="true" filterMatchMode="contains"
+                        [showClear]="true" optionLabel="label"
+                        placeholder="Category"
+                        [disabled]="true">
+            </p-dropdown>
+          </div>
+
+
+          <div class="field col-11 md:col-6">
+            <label for="5">On Loan</label>
+            <div class="input-switch">
+              <p-inputSwitch class="mb-2 mr-2" id="5" [(ngModel)]="book.onLoan"
+                             [disabled]="true"></p-inputSwitch>
+            </div>
+          </div>
+
+        </div>
+      </p-tabPanel>
+
+    </p-tabView>
+
+  </ng-template>
+
+</p-dialog>

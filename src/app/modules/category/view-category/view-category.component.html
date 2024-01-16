@@ -1,0 +1,24 @@
+<p-dialog [(visible)]="viewDialog" [style]="{width: '70vw'}" header="Category" [modal]="true"
+          styleClass="p-fluid" [maximizable]="true" [draggable]="false" [resizable]="false">
+  <ng-template pTemplate="content">
+    <p-tabView>
+      <p-tabPanel header="Category">
+        <div class="grid">
+
+          <div class="field col-12 md:col-6">
+            <label for="1">Label</label>
+            <input class="mb-2 mr-2" type="text" pInputText placeholder="Title"
+                   id="1" [(ngModel)]="category.label"
+                   [disabled]="true"
+               />
+          </div>
+
+        </div>
+      </p-tabPanel>
+
+    </p-tabView>
+
+  </ng-template>
+
+
+</p-dialog>

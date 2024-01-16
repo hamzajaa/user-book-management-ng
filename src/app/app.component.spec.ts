@@ -17,13 +17,13 @@ describe('AppComponent', () => {
   it(`should have as title 'user-book-management-ng'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('user-book-management-ng');
+    expect(app.title).toEqual('client-book-management-ng');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('user-book-management-ng app is running!');
+    expect(compiled.querySelector('.content span')?.textContent).toContain('client-book-management-ng app is running!');
   });
 });

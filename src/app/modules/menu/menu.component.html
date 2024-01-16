@@ -1,0 +1,10 @@
+<!--<div *ngIf="isMenuVisible">-->
+<!--  <p-panelMenu [model]="items" [style]="{'width':'300px'}"></p-panelMenu>-->
+<!--</div>-->
+
+<div class="card flex justify-content-center" style="font-size: 1rem">
+  <p-sidebar [(visible)]="sidebarVisible" >
+    <p-panelMenu [model]="items"></p-panelMenu>
+  </p-sidebar>
+<!--  <router-outlet></router-outlet>-->
+</div>
